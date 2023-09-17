@@ -27,8 +27,8 @@ namespace Presentacion
         {
             Exception exc = Server.GetLastError();
 
-            Session.Add("error", "Este es un error generico no controlado por la aplicación");
-            Server.Transfer("frmError.aspx", true);
+            //Session.Add("error", "Este es un error generico no controlado por la aplicación");
+            //Server.Transfer("frmError.aspx", true);
 
         }
     }

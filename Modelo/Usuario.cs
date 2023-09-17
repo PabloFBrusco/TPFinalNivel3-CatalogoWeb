@@ -6,23 +6,16 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    public enum TipoUsuario
-    {
-        NORMAL = 1,
-        ADMIN = 2
-    }
     public class Usuario
     {
-        public string User { get; set; }
         public int Id { get; set; }
-        public string Password { get; set; }
-        public TipoUsuario TipoUsuario { get; set; }
-        public Usuario(string user, string pass, bool admin)
-        {
-            User = user;
-            Password = pass;
-            TipoUsuario = admin ? TipoUsuario.ADMIN : TipoUsuario.NORMAL;
-        }
+        public string Email { get; set; }
+        public string Pass { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public DateTime FechaNacimiento { get; set; }
+        public bool Admin { get; set; }
+        public string UrlImagenPerfil { get; set; }
     }
 
     

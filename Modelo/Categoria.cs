@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio
+namespace Modelo
 {
-    public class Modelo
+    public class Categoria
     {
         public int id { get; set; }
         [DisplayName("Categoría")]

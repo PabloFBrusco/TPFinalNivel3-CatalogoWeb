@@ -8,54 +8,62 @@
     <title>Catalogo Web - Brusco Software</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <link href="Estilos.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
             <div class="container">
-                <img src="\images\banersup.png" alt="Alternate Text" />
-                <nav class="navbar navbar-expand-lg" style="background-color:#e28b55">
+                <nav class="navbar navbar-expand-lg" style="background-color:#FC962D">
                   <div class="container-fluid">
-                    <a class="navbar-brand" href="Default.aspx">Lista Artículos</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                      <ul class="navbar-nav">
-                        <li class="nav-item">
-                          <a class="navbar-brand" aria-current="page" href="#">Catálogo Foreach</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="navbar-brand" href="#">Catalogo Repeat</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="navbar-brand" href="#">Favoritos</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="navbar-brand" href="#">Contacto</a>
-                        </li>
-                      </ul>
-                        <div class="col-4"></div>
-                        <div class="col-3">
-                            <asp:Button ID="btnLogin" class="btn btn-outline-dark" runat="server" Text="Login" />
+                          <img src="\images\banergestor.png" class="container-fluid" alt="Alternate Text" />
+                </div>
+                    </nav>
+                <nav class="navbar navbar-expand-lg" style="background-color:#FC962D">
+                  <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                        <div class="col-9">
+                        <ul class="navbar-nav">
+                              <li class="nav-item">
+                                <a class="navbar-brand" href="default.aspx">Home</a>
+                              </li>
+                               <% if (Session["usuarioLogueado"] != null)
+                                { %>
+                              <li class="nav-item">
+                                <a class="navbar-brand" href="#">Favoritos</a>
+                              </li>
+                                <% }  %>
+                             <% if (Session["usuarioAdmin"] != null && Session["usuarioAdmin"].ToString() == "SI")
+                                { %>
+                              <li class="nav-item">
+                                <a class="navbar-brand" href="Articulos.aspx">Admin Panel</a>
+                              </li>
+                                <% }  %>
+                              <li class="nav-item">
+                                <a class="navbar-brand" href="Contacto.aspx">Contacto</a>
+                              </li>
+                        </ul>
+                     </div>
+                         <div class="col-3">
+                            <asp:Button ID="btnLogin" class="btn btn-outline-dark" OnClick="btnLogin_Click" runat="server" Text="Login" />
                             <%
                                 if (Session["usuarioLogueado"] != null)
                                 {
                                     %>
-                            <a href="frmPerfil.aspx">Mi Perfil</a>
+                            <a href="MiPerfil.aspx">Mi Perfil</a>
                               <%
 
                                 }
                                 else
                                 {%>
-                            <asp:Button ID="btnRegistro" class="btn btn-outline-dark" runat="server" Text="Registrarse" />
+                            <asp:Button ID="btnRegistro" class="btn btn-outline-dark" OnClick="btnRegistro_Click" runat="server" Text="Registrarse" />
                                <% }
                                 %>
                             <asp:Image ID="imgPerfil" ImageUrl="https://media.istockphoto.com/id/1345002600/es/vector/avatar-de-perfil-neutro-de-g%C3%A9nero-vista-frontal-de-la-cara-de-una-persona-an%C3%B3nima.jpg?s=612x612&w=0&k=20&c=BUdEMu6OWjPX97gsy3ltUUxVJYtdzKI9q8H-Ph7FsL8=" style="height:40px; width:40px; border-radius:50%" runat="server"/>
                         </div>
                     </div>
-                  </div>
+                      </div>
                 </nav>
             
             </div>

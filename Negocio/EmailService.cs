@@ -23,6 +23,17 @@ namespace Negocio
             server.Host = "smtp.gmail.com";
         }
 
+        public void CorreoContacto(string emailRte, string asunto, string cuerpo, string nombre, string empresa, string telefono, string ciudad)
+        {
+            email = new MailMessage();
+            email.From = new MailAddress("pbrusco@gmail.com");
+            email.To.Add("pbrusco@gmail.com");
+            email.Subject = "Nuevo contacto desde CatálogoWeb";
+            //email.Body = cuerpo;
+            email.IsBodyHtml = true;
+            email.Body = "<h1>" + asunto + "</h1> <br> <p>Nombre: "+ nombre + "</p> <br> <p>Correo de: " + emailRte + " </p> <br> <p>Empresa: " + empresa + " </p> <br> <p>Telefono: " + telefono + " </p> <br> <p>Ciudad: " + ciudad + " </p> <br> <p>Mensaje: " + cuerpo + "</p>" ;
+
+        }
         public void ArmarCorreo(string emailDestino, string asunto, string cuerpo, string titulo)
         {
             email = new MailMessage();
