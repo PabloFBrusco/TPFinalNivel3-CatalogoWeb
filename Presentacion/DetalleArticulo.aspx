@@ -26,7 +26,7 @@
                     <asp:Label id="lblPrecio" class="detalle" runat="server" Text=""></asp:Label>  
                 </div>
                 <div>
-                    <a href="Default.aspx" class="btn btn-primary btn-sm botones">Volver</a>
+                    <asp:Button ID="btnVolver" OnClick="btnVolver_Click" CssClass="btn btn-primary btn-sm botones" runat="server" Text="Volver" />
                 </div>
                                
             </div>

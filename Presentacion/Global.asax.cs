@@ -25,10 +25,10 @@ namespace Presentacion
         }
         void Application_Error(object sender, EventArgs e)
         {
-            Exception exc = Server.GetLastError();
+            //Exception exc = Server.GetLastError();
 
             //Session.Add("error", "Este es un error generico no controlado por la aplicación");
-            //Server.Transfer("frmError.aspx", true);
+            //Server.Transfer("Error.aspx", true);
 
         }
     }

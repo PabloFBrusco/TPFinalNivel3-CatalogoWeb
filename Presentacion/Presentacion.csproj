@@ -79,6 +79,7 @@
     <Content Include="Favoritos.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\BanerGestor.png" />
+    <Content Include="Images\BanerInferior.png" />
     <Content Include="Login.aspx" />
     <Content Include="MiPerfil.aspx" />
     <Content Include="Registro.aspx" />

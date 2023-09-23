@@ -39,7 +39,7 @@ namespace Presentacion
                         // traigo la lista de articulos y elijo el que me indicaron de la grilla
                         int elegido = int.Parse(Request.QueryString["Id"].ToString());
                         ArticuloNegocio negocio = new ArticuloNegocio();
-                        ListaArticulos = negocio.listar();
+                        ListaArticulos = negocio.listar("Código");
                         Articulo seleccionado = ListaArticulos.Find(x => x.id == elegido);
 
                         // cargo en los campos los valores del objeto seleccionado
@@ -100,12 +100,30 @@ namespace Presentacion
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                int id = int.Parse(txtID.Text);
+                negocio.modificar(CapturarArticulo(), id);
 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                Response.Redirect("Articulos.aspx", false);
+
+            }
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-
+            chkEliminar.Visible = true;
+            lblEliminar.Visible = true;
+            btnEliminarDef.Visible = true;
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -115,7 +133,12 @@ namespace Presentacion
 
         protected void btnEliminarDef_Click(object sender, EventArgs e)
         {
-
+            if (chkEliminar.Checked)
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                negocio.eliminar(int.Parse(txtID.Text));
+                Response.Redirect("Articulos.aspx", false);
+            }
         }
         public Articulo CapturarArticulo()
         {

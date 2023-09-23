@@ -31,7 +31,7 @@
                                <% if (Session["usuarioLogueado"] != null)
                                 { %>
                               <li class="nav-item">
-                                <a class="navbar-brand" href="#">Favoritos</a>
+                                <a class="navbar-brand" href="Favoritos.Aspx">Favoritos</a>
                               </li>
                                 <% }  %>
                              <% if (Session["usuarioAdmin"] != null && Session["usuarioAdmin"].ToString() == "SI")
@@ -80,7 +80,12 @@
 </body>
 <footer>
     <div class="container">
-        <p>Este es el footer</p>
+        <br />
+        <nav class="navbar navbar-expand-lg" style="background-color:#FC962D">
+            <div class="container-fluid">
+                 <img src="\images\banerInferior.png" class="container-fluid" alt="Alternate Text" />
+            </div>
+        </nav>
     </div>
     
 </footer>

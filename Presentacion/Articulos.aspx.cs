@@ -17,35 +17,52 @@ namespace Presentacion
                 ddlTabla.Items.Add("Articulos");
                 ddlTabla.Items.Add("Categorias");
                 ddlTabla.Items.Add("Marcas");
+                if (Session["administrar"] != null)
+                {
+                    ddlTabla.SelectedValue = (string)Session["administrar"]; 
+                }
             }
             CargarGrilla();
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ABMArticulos.aspx", false);
+            if (ddlTabla.SelectedItem.ToString() == "Articulos")
+            {
+                Session.Add("administrar", "Articulos");
+                Response.Redirect("ABMArticulos.aspx", false);
+            }
+                
+            else if (ddlTabla.SelectedItem.ToString() == "Categorias")
+            {
+                Session.Add("administrar", "Categorias");
+                Response.Redirect("ABMCategorias.aspx", false);
+            }
+                
+            else
+            {
+                Session.Add("administrar", "Marcas");
+                Response.Redirect("ABMMarcas.aspx", false);
+            }
+                
+
         }
 
         protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
         {
             int elegido = int.Parse(dgvArticulos.SelectedValue.ToString());
+            Session.Add("administrar", "Articulos");
             Response.Redirect("ABMArticulos.aspx?id=" + elegido);
         }
-
-        protected void ddlTabla_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         public void CargarGrilla()
         {
             if (ddlTabla.SelectedItem.ToString() == "Articulos")
-            {
+                {
                 dgvArticulos.Visible = true;
                 dgvCategorias.Visible = false;
                 dgvMarcas.Visible = false;
                 ArticuloNegocio negocio = new ArticuloNegocio();
-                Session.Add("listaArticulos", negocio.listar());
+                Session.Add("listaArticulos", negocio.listar("Código"));
                 dgvArticulos.DataSource = null;
                 dgvArticulos.DataSource = Session["listaArticulos"];
                 dgvArticulos.DataBind();
@@ -78,10 +95,19 @@ namespace Presentacion
 
         protected void dgvCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            int elegido = int.Parse(dgvCategorias.SelectedValue.ToString());
+            Session.Add("administrar", "Categorias");
+            Response.Redirect("ABMCategorias.aspx?id=" + elegido);
         }
 
         protected void dgvMarcas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int elegido = int.Parse(dgvMarcas.SelectedValue.ToString());
+            Session.Add("administrar", "Marcas");
+            Response.Redirect("ABMMarcas.aspx?id=" + elegido);
+        }
+
+        protected void ddlTabla_TextChanged(object sender, EventArgs e)
         {
 
         }

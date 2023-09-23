@@ -24,7 +24,7 @@ namespace Negocio
             try
             {
 
-                datos.setearConsulta("select id, descripcion from marcas order by descripcion");
+                datos.setearConsulta("select id, descripcion from marcas order by id");
                 datos.ejecutarLector();
 
                 while (datos.Lector.Read())
@@ -105,7 +105,7 @@ namespace Negocio
                 throw ex;
             }
         }
-        public int VerificarArticulos(int id)
+        public bool VerificarArticulos(int id)
         {
             int cantidad;
             cantidad = 0;
@@ -120,15 +120,15 @@ namespace Negocio
                 {
                     cantidad = (int)datos.Lector["marca"];
                 }
-                
 
-
+                if (cantidad > 0) return true;
+                else return false;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return cantidad;
+            
         }
     }
 }

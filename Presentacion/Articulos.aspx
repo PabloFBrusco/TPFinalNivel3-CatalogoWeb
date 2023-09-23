@@ -6,13 +6,13 @@
     <div class="row">
         <div class="col-3">
             <asp:Label ID="Label1" runat="server" Text="Administrar"></asp:Label>
-            <asp:DropDownList ID="ddlTabla" OnSelectedIndexChanged="ddlTabla_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
+            <asp:DropDownList ID="ddlTabla" OnTextChanged="ddlTabla_TextChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
         </div>
     </div>
     <br />
     <div class="row"> 
         <div class="col">
-        <asp:GridView ID="dgvArticulos" runat="server" CssClass="table table-success table-striped" DataKeyNames="id" 
+        <asp:GridView ID="dgvArticulos" runat="server" CssClass="table table-warning table-striped" DataKeyNames="id" 
                       AutoGenerateColumns="false" OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged">
         <Columns>
                 <asp:BoundField HeaderText="Código" DataField="Codigo" />
@@ -20,23 +20,23 @@
                 <asp:BoundField HeaderText="Marca" DataField="Marca.Descripcion" />
                 <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
                 <asp:BoundField HeaderText="Precio" DataField="Precio" DataFormatString="{0:C}" />
-                <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderStyle-HorizontalAlign ="Center" HeaderText="Accion" />
+                <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderStyle-HorizontalAlign ="Center" HeaderText="Acción" />
         </Columns>
         </asp:GridView>
-        <asp:GridView ID="dgvCategorias" runat="server" CssClass="table table-success table-striped" DataKeyNames="id" 
+        <asp:GridView ID="dgvCategorias" runat="server" CssClass="table table-warning table-striped" DataKeyNames="id" 
                       AutoGenerateColumns="false" OnSelectedIndexChanged="dgvCategorias_SelectedIndexChanged">
         <Columns>
                 <asp:BoundField HeaderText="Código" DataField="Id" />
                 <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />
-                <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderStyle-HorizontalAlign ="Center" HeaderText="Accion" />
+                <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderStyle-HorizontalAlign ="Center" HeaderText="Acción" />
         </Columns>
         </asp:GridView>
-        <asp:GridView ID="dgvMarcas" runat="server" CssClass="table table-success table-striped" DataKeyNames="id" 
+        <asp:GridView ID="dgvMarcas" runat="server" CssClass="table table-warning table-striped" DataKeyNames="id" 
                       AutoGenerateColumns="false" OnSelectedIndexChanged="dgvMarcas_SelectedIndexChanged" >
         <Columns>
                 <asp:BoundField HeaderText="Código" DataField="Id" />
                 <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />
-                <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderStyle-HorizontalAlign ="Center" HeaderText="Accion" />
+                <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderStyle-HorizontalAlign ="Center" HeaderText="Acción" />
         </Columns>
         </asp:GridView>
         </div>

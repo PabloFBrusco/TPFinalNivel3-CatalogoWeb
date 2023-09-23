@@ -102,7 +102,7 @@ namespace Negocio
                 throw ex;
             }
         }
-        public int VerificarArticulos(int id)
+        public bool VerificarArticulos(int id)
         {
             int cantidad;
             cantidad = 0;
@@ -118,12 +118,15 @@ namespace Negocio
                     cantidad = (int)datos.Lector["cantidad"];
                 }
 
+                if (cantidad > 0) return true;
+                else return false;
+
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return cantidad;
         }
 
     }

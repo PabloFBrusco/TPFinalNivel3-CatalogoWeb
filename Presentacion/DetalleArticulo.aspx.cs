@@ -16,7 +16,7 @@ namespace Presentacion
             List<Articulo> ListaArticulos = new List<Articulo>();
             int elegido = int.Parse(Request.QueryString["Id"].ToString());
             ArticuloNegocio negocio = new ArticuloNegocio();
-            ListaArticulos = negocio.listar();
+            ListaArticulos = negocio.listar("Código");
             Articulo seleccionado = ListaArticulos.Find(x => x.id == elegido);
             imgFoto.ImageUrl = seleccionado.imagen.ToString();
             lblCategoria.Text = "Categoría: " + seleccionado.categoria.ToString();
@@ -25,6 +25,11 @@ namespace Presentacion
             LblTitulo.Text = seleccionado.nombre;
             LblDescripcion.Text = "Descripción: " + seleccionado.descripcion;
             lblPrecio.Text = "Precio: " + seleccionado.precio.ToString("C");
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Session["paginaAnterior"].ToString(), false);
         }
     }
 }

@@ -27,13 +27,7 @@ namespace Negocio
         }
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server= .\\SQLEXPRESS; database= catalogo_Web_db; user= sa; password=sabejerman");
-            //string servidor, basedatos, usuario, pasword;
-            //servidor = ConfigurationManager.AppSettings["server"];
-            //basedatos = ConfigurationManager.AppSettings["db"];
-            //usuario = ConfigurationManager.AppSettings["user"];
-            //pasword = ConfigurationManager.AppSettings["pass"];
-            //conexion = new SqlConnection("server= " + servidor + "; database=" + basedatos + " ; user=" + usuario + "; password=" + pasword);
+            conexion = new SqlConnection("server= .\\sqlexpress; database= catalogo_Web_db; user= sa; password=sabejerman");
             comando = new SqlCommand();
         }
 

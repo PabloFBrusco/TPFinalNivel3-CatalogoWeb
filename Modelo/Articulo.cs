@@ -25,5 +25,6 @@ namespace Modelo
         public  Categoria categoria { get; set; }
         [DisplayName("Marca")]
         public Marca marca { get; set; }
+        public int Favorito { get; set; }
     }
 }
