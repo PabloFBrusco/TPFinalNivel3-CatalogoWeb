@@ -27,7 +27,7 @@ namespace Negocio
         }
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server= .\\sqlexpress; database= catalogo_Web_db; user= sa; password=sabejerman");
+            conexion = new SqlConnection(ConfigurationManager.AppSettings["cadenaConexion"]);
             comando = new SqlCommand();
         }
 

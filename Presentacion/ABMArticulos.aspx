@@ -3,13 +3,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row row-cols-2">
-        <div class="col-4">
+        <div class="col-6">
             <div class="mb-3">
                 <label for="txtID" class="form-label">ID</label>
                 <asp:TextBox ID="txtID" CssClass="form-control form-control-sm" runat="server"></asp:TextBox>
             </div>
             <div class="mb-3">
-                <label for="txtCodigo" class="form-label">Nombre</label>
+                <label for="txtCodigo" class="form-label">Código</label>
                 <asp:TextBox ID="txtCodigo" CssClass="form-control form-control-sm" runat="server"></asp:TextBox>
             </div>
             <div class="mb-3">
@@ -23,6 +23,7 @@
             <div class="mb-3">
                 <label for="txtPrecio" class="form-label">Precio</label>
                 <asp:TextBox ID="txtPrecio" CssClass="form-control form-control-sm" runat="server"></asp:TextBox>
+                <asp:RegularExpressionValidator ErrorMessage="Debe ingresar un importe válido" CssClass="Validacion" ValidationExpression="^[0-9]+$" ControlToValidate="txtPrecio" runat="server" />
             </div>
             <div class="mb-3">
                 <label for="ddlMarca" class="form-label">Marca</label>
@@ -31,7 +32,7 @@
                 <asp:DropDownList ID="ddlCategoria" CssClass="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" runat="server"></asp:DropDownList>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-6">
             <asp:updatepanel>
                 <ContentTemplate>
                     <div class="mb-3">

@@ -39,7 +39,7 @@ namespace Presentacion
                         // traigo la lista de articulos y elijo el que me indicaron de la grilla
                         int elegido = int.Parse(Request.QueryString["Id"].ToString());
                         ArticuloNegocio negocio = new ArticuloNegocio();
-                        ListaArticulos = negocio.listar("Código");
+                        ListaArticulos = negocio.listar("Código", "");
                         Articulo seleccionado = ListaArticulos.Find(x => x.id == elegido);
 
                         // cargo en los campos los valores del objeto seleccionado
@@ -83,8 +83,12 @@ namespace Presentacion
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 negocio.agregar(CapturarArticulo());
+                Response.Redirect("Articulos.aspx", false);
             }
             catch (Exception ex)
             {
@@ -92,31 +96,28 @@ namespace Presentacion
                 Session.Add("error", error.MensajeError(ex));
                 Response.Redirect("Error.aspx", false);
             }
-            finally
-            {
-                Response.Redirect("Articulos.aspx", false);
-            }
+            
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 int id = int.Parse(txtID.Text);
                 negocio.modificar(CapturarArticulo(), id);
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
                 Response.Redirect("Articulos.aspx", false);
-
             }
+            catch (Exception ex)
+            {
+                ManejoError error = new ManejoError();
+                Session.Add("error", error.MensajeError(ex));
+                Response.Redirect("Error.aspx", false);
+            }
+
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)

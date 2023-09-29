@@ -35,11 +35,11 @@
     font-weight: bold;
 }
 .titulo {
-    text-align:left;
-    color:black;
-    font-family:Arial;
-    color:red;
-    font-size:20px;    
+    text-align: left;
+    font-family: Arial;
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
 }
 .detalle {
     text-align: left;
@@ -67,6 +67,6 @@
 }
 .Precio {
     color: black;
-    font-size: 12px;
+    font-size: 18px;
     font-weight:bold;
 }

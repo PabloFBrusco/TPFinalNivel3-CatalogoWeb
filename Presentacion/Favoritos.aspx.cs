@@ -24,10 +24,11 @@ namespace Presentacion
                     ListaArticulos = negocio.listarFavoritos(((Usuario)Session["usuarioLogueado"]).Id);
                 }
                 else
-                    ListaArticulos = negocio.listar("Código");
+                    ListaArticulos = negocio.listar("Código", "");
                 
                 if (!IsPostBack)
                 {
+                    
                     Reptarjeta.DataSource = ListaArticulos;
                     Reptarjeta.DataBind();
                 }

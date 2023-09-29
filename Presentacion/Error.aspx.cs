@@ -12,8 +12,6 @@ namespace Presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["error"].ToString != "")
-
             lblerror.Text = Session["error"].ToString();
         }
 

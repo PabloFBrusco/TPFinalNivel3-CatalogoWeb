@@ -26,7 +26,7 @@ namespace Presentacion
                 imgPerfil.ImageUrl = "https://media.istockphoto.com/id/1345002600/es/vector/avatar-de-perfil-neutro-de-g%C3%A9nero-vista-frontal-de-la-cara-de-una-persona-an%C3%B3nima.jpg?s=612x612&w=0&k=20&c=BUdEMu6OWjPX97gsy3ltUUxVJYtdzKI9q8H-Ph7FsL8=";
             }
 
-            if (Page is Articulos || Page is ABMArticulos)
+            if (Page is Articulos || Page is ABMArticulos || Page is ABMCategorias || Page is ABMMarcas)
             {
                 if (!(ValidarUsuario.validarAdmin((Usuario)Session["usuarioLogueado"])))
                 {

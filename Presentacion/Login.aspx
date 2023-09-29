@@ -2,8 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="col-10">
+    <h1>Ingrese su usuario y contraseña</h1>
+    </div>
     <div class="col-6">   
-        <h1>Ingrese su usuario y contraseña</h1>
         <div class="mb-3">
             <asp:Label ID="Label1" runat="server" Text="Email"></asp:Label>
             <asp:TextBox ID="txtUSer" CssClass="form-control" runat="server"></asp:TextBox>

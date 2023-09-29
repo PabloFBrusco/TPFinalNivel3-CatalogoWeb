@@ -1,11 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterTPFinal.Master" AutoEventWireup="true" CodeBehind="Contacto.aspx.cs" Inherits="Presentacion.Contacto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <style> 
-        .Validacion{
-            color:red;
-            font-size:12px;
-        }
-    </style>
+    <link href="Estilos.css" rel="stylesheet" type="text/css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <h1>Contactame:</h1>

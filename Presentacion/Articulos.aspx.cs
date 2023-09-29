@@ -62,7 +62,7 @@ namespace Presentacion
                 dgvCategorias.Visible = false;
                 dgvMarcas.Visible = false;
                 ArticuloNegocio negocio = new ArticuloNegocio();
-                Session.Add("listaArticulos", negocio.listar("Código"));
+                Session.Add("listaArticulos", negocio.listar("Código",""));
                 dgvArticulos.DataSource = null;
                 dgvArticulos.DataSource = Session["listaArticulos"];
                 dgvArticulos.DataBind();

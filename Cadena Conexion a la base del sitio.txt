@@ -1,0 +1,1 @@
+workstation id=CATALOGO_WEB_PB.mssql.somee.com;packet size=4096;user id=pbrusco_SQLLogin_2;pwd=9bmwaflyx2;data source=CATALOGO_WEB_PB.mssql.somee.com;persist security info=False;initial catalog=CATALOGO_WEB_PB

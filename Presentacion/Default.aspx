@@ -1,12 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterTPFinal.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Presentacion.Default" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        .Precio {
-    color: black;
-    font-size: 16px;
-    font-weight:bold;
-}
-    </style>
+    <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="Estilos.css" rel="stylesheet" type="text/css">
+    <script>
+        function ImagenDefecto()
+        {
+            this.onerror=null; 
+            this.src = 'https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg?w=740';
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
@@ -15,13 +16,12 @@
             <div class="col-9">
                     <div class="mb-3">
                         <asp:Label ID="lblCampo" runat="server" Text="Filtrar Por:"></asp:Label>
-                        <asp:DropDownList ID="ddlCampo" CssClass="btn btn-primary btn-sm dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged" runat="server">
-                        <asp:ListItem Text="Categoría" />
-                        <asp:ListItem Text="Marca" />
+                        <asp:DropDownList ID="ddlCampo" ClientIDMode="Static" CssClass="btn btn-primary btn-sm dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged" runat="server">
                         <asp:ListItem Text="Nombre" />
+                        <asp:ListItem Text="Marca" />
+                        <asp:ListItem Text="Categoría" />
                         <asp:ListItem Text="Precio" />
                     </asp:DropDownList>
-                         <asp:Label ID="lblCriterio" runat="server" Text="Que sea:"></asp:Label>
                         <asp:DropDownList ID="ddlCriterio" CssClass="btn btn-primary btn-sm dropdown-toggle" runat="server">
                         <asp:ListItem Text="Empieza con" />
                         <asp:ListItem Text="Termina con" />
@@ -44,12 +44,13 @@
             <ItemTemplate>
                 <div class="col">
                     <div class="card h-100">
-                        <img src="<%#Eval("imagen")%>"  class="logos"  alt="Sin Foto">
+                        <img src="<%#Eval("imagen")%>" onerror="this.onerror=null; this.src = 'https://img.freepik.com/vector-premium/icono-marco-fotos-foto-vacia-blanco-vector-sobre-fondo-transparente-aislado-eps-10_399089-1290.jpg?w=740'" class="logos">
                         <div class="card-body">
                             <h5 class="titulo" ><%#Eval("nombre")%></h5>
-                            <p class="card-text"><%#Eval("descripcion")%></p>
+                            <p class="card-text">Marca: <%#Eval("marca")%></p>
+                            <p class="card-text">Categoría: <%#Eval("categoria")%></p>
                             <p class="Precio">Precio: $ <%#Eval("precio")%></p>
-                            <a href="DetalleArticulo.aspx?id=<%#Eval("id")%>" id="link" class="btn btn-primary btn-sm botones">Ver Detalle</a>
+                            <a href="DetalleArticulo.aspx?id=<%#Eval("id")%>" id="link" onclick="" class="btn btn-primary btn-sm botones">Ver Detalle</a>
                             <%if (Session["usuarioLogueado"] != null)
                                 { %>
                             <asp:Button ID="BtnFavorito" OnClick="BtnFavorito_Click" 

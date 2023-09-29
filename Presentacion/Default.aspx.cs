@@ -18,7 +18,6 @@ namespace Presentacion
             Session.Add("paginaAnterior", "Default.aspx");
             try
             {
-
                 if (!IsPostBack)
                 {
                     ddlOrden.Items.Add("Código");
@@ -30,6 +29,7 @@ namespace Presentacion
                     Reptarjeta.DataSource = ListaArticulos;
                     Reptarjeta.DataBind();
                 }
+                
                 CargarGrilla();
             }
             catch (Exception ex)
@@ -47,13 +47,13 @@ namespace Presentacion
             {
                 if (Session["usuariologueado"] != null)
                 {
-                    ListaArticulos = negocio.listarLogueado(((Usuario)Session["usuarioLogueado"]).Id, ddlOrden.SelectedValue.ToString());
+                    ListaArticulos = negocio.listarLogueado(((Usuario)Session["usuarioLogueado"]).Id, ddlOrden.SelectedValue.ToString(), SetearConsulta());
 
                 }
 
                 else
                 {
-                    ListaArticulos = negocio.listar(ddlOrden.SelectedValue.ToString());
+                    ListaArticulos = negocio.listar(ddlOrden.SelectedValue.ToString(), SetearConsulta());
                 }
                 Reptarjeta.DataSource = ListaArticulos;
                 Reptarjeta.DataBind();
@@ -81,7 +81,6 @@ namespace Presentacion
                 if (negocio.EvaluarFavorito(favo))
                    negocio.BorroFavorito(favo);
                 else negocio.AgregoFavorito(favo);
-
                 Response.Redirect("Default.aspx", false);
             }
             catch (Exception ex)
@@ -99,17 +98,90 @@ namespace Presentacion
 
         protected void ddlCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (ddlCampo.SelectedItem.ToString() == "Precio")
+            {
+                ddlCriterio.Items.Clear();
+                ddlCriterio.Items.Add("Igual a");
+                ddlCriterio.Items.Add("Mayor a");
+                ddlCriterio.Items.Add("Menor a");
+            }
+            else
+            {
+                ddlCriterio.Items.Clear();
+                ddlCriterio.Items.Add("Empieza con");
+                ddlCriterio.Items.Add("Termina con");
+                ddlCriterio.Items.Add("Contiene");
+            }
         }
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
-
+            CargarGrilla();
         }
 
         protected void btnLimpiar_Click(object sender, EventArgs e)
         {
-
+            txtParametroFiltro.Text = "";
+            CargarGrilla();
         }
+        public string SetearConsulta()
+        {
+            float valor;
+            string cadena = "";
+            if (txtParametroFiltro.Text != "") 
+            {
+                if (ddlCampo.SelectedItem.ToString() == "Categoría")
+                {
+                    cadena = cadena + " where c.Descripcion";
+                }
+                else if (ddlCampo.SelectedItem.ToString() == "Marca")
+                {
+                    cadena = cadena + " where m.Descripcion";
+                }
+                else if (ddlCampo.SelectedItem.ToString() == "Nombre")
+                {
+                    cadena = cadena + " where a.Nombre";
+                }
+                else
+                {
+                    cadena = cadena + " where a.precio";
+                }
+
+                if (ddlCampo.SelectedItem.ToString() == "Precio")
+                {
+                    valor = float.Parse(txtParametroFiltro.Text);
+                    if (ddlCriterio.SelectedItem.ToString() == "Mayor a")
+                    {
+                        cadena = cadena + "> " + valor;
+                    }
+                    else if (ddlCriterio.SelectedItem.ToString() == "Menor a")
+                    {
+                        cadena = cadena + "< " + valor;
+                    }
+                    else
+                    {
+                        cadena = cadena + "= " + valor;
+                    }
+                }
+                else
+                {
+                    if (ddlCriterio.SelectedItem.ToString() == "Empieza con")
+                    {
+                        cadena = cadena + " LIKE '" + txtParametroFiltro.Text + "%'";
+                    }
+                    else if (ddlCriterio.SelectedItem.ToString() == "Termina con")
+                    {
+                        cadena = cadena + " LIKE '%" + txtParametroFiltro.Text + "'";
+
+                    }
+                    else
+                    {
+                        cadena = cadena + " LIKE '%" + txtParametroFiltro.Text + "%'";
+                    }
+                }
+            }
+            return cadena;
+        }
+
     }
 }
